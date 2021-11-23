@@ -19,9 +19,57 @@ form.addEventListener('submit', (event) => {
   event.preventDefault();
   /* Logica de los if */
 
-  if(edad.value < 18){
-    printResponse("Papas")
-  }
+  console.log(edad.value);
+  console.log(sexo.value);
+  console.log(ps.value);
+  console.log(colesterol.value);
+  console.log(na.value);
+  console.log(k.value);
 
+  if(k.value <= 0.055){
+    if(k.value <= 0.037){
+      printResponse("drogaY");
+    }
+    else if(na.value <= 0.685){
+      if(ps.value == "ALTO"){
+        printResponse("drogaA");
+      }
+      if (ps.value == "NORMAL") {
+        printResponse("drogaX");
+      }
+      if (ps.value == "BAJO") {
+        if (sexo.value == "M"){
+          printResponse("drogaX");
+        }
+        if (sexo.value == "F") {
+          printResponse("drogaC");
+        }
+      }
+    }
+    else{
+      printResponse("drogaY");
+    }
+  }
+  else{
+    if (ps.value == "ALTO") {
+      if (edad.value <= 50) {
+        printResponse("drogaA");
+      }
+      else{
+        printResponse("drogaB");
+      }
+    }
+    if (ps.value == "BAJO") {
+      if (colesterol.value == "NORMAL") {
+        printResponse("drogaX");
+      }
+      if (colesterol.value == "ALTO") {
+        printResponse("drogaC");
+      }
+    }
+    if (ps.value == "NORMAL") {
+      printResponse("drogaX");
+    }
+  }
 });
 
